@@ -20,5 +20,12 @@ namespace DebugUI
             Configure(builder);
             builder.BuildWith(uiDocument);
         }
+
+        public void SetVisible(bool isVisible)
+        {
+            uiDocument.rootVisualElement.visible = isVisible;
+        }
+
+        public bool GetVisible() => uiDocument.rootVisualElement.visible;
     }
 }

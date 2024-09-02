@@ -74,5 +74,13 @@ namespace DebugUI.Sandbox
                 builder.AddSlider("Bloom Intensity", 0f, 10f, () => bloom.intensity.value, x => bloom.intensity.value = x, stepSize: 0.1f);
             });
         }
+
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.Home))
+            {
+                SetVisible(!GetVisible());
+            }
+        }
     }
 }
