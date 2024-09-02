@@ -16,6 +16,7 @@ namespace DebugUI.Sandbox
         Bloom bloom;
 
         int counter;
+        int health;
 
         float GravityScale
         {
@@ -57,6 +58,11 @@ namespace DebugUI.Sandbox
             builder.AddFoldout("General", builder =>
             {
                 builder.AddSlider("Counter", -5, 5, () => counter, x => counter = x, stepSize: 2);
+                builder.AddFoldout("Player", builder =>
+                {
+                    builder.AddSlider("Health", 0, 100, () => health, x => health = x);
+                    builder.AddButton("Revive", () => { Debug.Log("Player is revived!"); health = 100; });
+                });
             });
 
             builder.AddFoldout("Physics", builder =>

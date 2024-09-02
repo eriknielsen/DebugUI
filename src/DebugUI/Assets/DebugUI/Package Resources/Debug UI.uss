@@ -25,6 +25,9 @@
 .unity-button:active {
     background-color: rgb(87, 87, 217);
 }
+.unity-button:focus {
+	background-color: rgb(135, 135, 255);
+}
 
 .unity-label {
     color: rgb(255, 255, 255);
@@ -43,7 +46,7 @@
 }
 
 .unity-base-field:focus .unity-label {
-    color: rgb(255, 255, 255);
+    color: rgb(5, 255, 255);
 }
 
 .unity-slider {
@@ -154,7 +157,7 @@
 }
 
 .unity-foldout__toggle > .unity-toggle__input:focus > .unity-label {
-    color: rgb(255, 255, 255);
+    color: rgb(5, 255, 255);
 }
 
 .unity-foldout__toggle > .unity-foldout__input > .unity-foldout__checkmark {
