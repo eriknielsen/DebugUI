@@ -11,6 +11,9 @@ namespace DebugUI.UIElements
         readonly Label valueLabel;
 
         public string Format { get; set; } = "{0:F2}";
+        public float stepSize = 0.1f;
+
+        float previousValue;
 
         public FillSlider() : base()
         {
@@ -40,8 +43,24 @@ namespace DebugUI.UIElements
 
         void OnValueChanged(float x)
         {
-            filler.style.width = Length.Percent(Mathf.InverseLerp(lowValue, highValue, x) * 100f);
-            valueLabel.text = string.Format(Format, x);
+            float steppedValue = (x / stepSize);
+
+            if (previousValue > x)
+            {
+                // If user is lowering the value, round down
+                steppedValue = Mathf.Floor(steppedValue);
+            }
+            else
+            {
+                // If user is increasing the value, round up
+                steppedValue = Mathf.Ceil(steppedValue);
+            }
+
+            value = steppedValue * stepSize;
+            filler.style.width = Length.Percent(Mathf.InverseLerp(lowValue, highValue, value) * 100f);
+            valueLabel.text = string.Format(Format, value);
+
+            previousValue = value;
         }
     }
 
@@ -53,6 +72,10 @@ namespace DebugUI.UIElements
         readonly Label valueLabel;
 
         public string Format { get; set; } = "{0}";
+
+        public int stepSize = 1;
+
+        int previousValue;
 
         public FillSliderInt() : base()
         {
@@ -82,8 +105,25 @@ namespace DebugUI.UIElements
 
         void OnValueChanged(int x)
         {
+            float steppedValue = ((float)x / (float)stepSize);
+
+            if (previousValue > x)
+            {
+	            // If user is lowering the value, round down
+                steppedValue = (Mathf.Floor(steppedValue));
+            }
+            else
+            {
+	            // If user is increasing the value, round up
+                steppedValue = (Mathf.Ceil(steppedValue));
+            }
+
+            value = (int)(steppedValue * stepSize);
+
             filler.style.width = Length.Percent(Mathf.InverseLerp(lowValue, highValue, x) * 100f);
             valueLabel.text = string.Format(Format, x);
-        }
+
+            previousValue = value;
+		}
     }
 }

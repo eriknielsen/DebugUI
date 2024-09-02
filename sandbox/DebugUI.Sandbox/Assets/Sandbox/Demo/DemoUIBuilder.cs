@@ -15,6 +15,8 @@ namespace DebugUI.Sandbox
         ColorAdjustments colorAdjustments;
         Bloom bloom;
 
+        int counter;
+
         float GravityScale
         {
             get
@@ -52,6 +54,11 @@ namespace DebugUI.Sandbox
                 options.Title = "Demo";
             });
 
+            builder.AddFoldout("General", builder =>
+            {
+                builder.AddSlider("Counter", -5, 5, () => counter, x => counter = x, stepSize: 2);
+            });
+
             builder.AddFoldout("Physics", builder =>
             {
                 builder.AddSlider("Time Scale", 0f, 3f, () => Time.timeScale, x => Time.timeScale = x);
@@ -62,8 +69,9 @@ namespace DebugUI.Sandbox
 
             builder.AddFoldout("Post-processing", builder =>
             {
-                builder.AddSlider("Hue Shift", -180f, 180f, () => colorAdjustments.hueShift.value, x => colorAdjustments.hueShift.value = x);
-                builder.AddSlider("Bloom Intensity", 0f, 10f, () => bloom.intensity.value, x => bloom.intensity.value = x);
+                builder.AddField("Enabled", () => volume.enabled, b => volume.enabled = b);
+                builder.AddSlider("Hue Shift", -180, 180, () => colorAdjustments.hueShift.value, x => colorAdjustments.hueShift.value = x, stepSize: 15);
+                builder.AddSlider("Bloom Intensity", 0f, 10f, () => bloom.intensity.value, x => bloom.intensity.value = x, stepSize: 0.1f);
             });
         }
     }

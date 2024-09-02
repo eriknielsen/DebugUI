@@ -344,7 +344,7 @@ namespace DebugUI
             return builder;
         }
 
-        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, float lowValue, float highValue, Func<float> getter, string format = "{0:F2}")
+        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, float lowValue, float highValue, Func<float> getter, string format = "{0:F2}", float stepSize = 0.1f)
         {
             builder.Factories.Add(new DebugSliderFactory()
             {
@@ -353,11 +353,12 @@ namespace DebugUI
                 LowValue = lowValue,
                 HighValue = highValue,
                 Getter = getter,
+                StepSize = stepSize
             });
             return builder;
         }
 
-        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, float lowValue, float highValue, Func<float> getter, Action<float> setter, string format = "{0:F2}")
+        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, float lowValue, float highValue, Func<float> getter, Action<float> setter, string format = "{0:F2}", float stepSize = 0.1f)
         {
             builder.Factories.Add(new DebugSliderFactory()
             {
@@ -367,11 +368,12 @@ namespace DebugUI
                 HighValue = highValue,
                 Getter = getter,
                 Setter = setter,
+                StepSize = stepSize
             });
             return builder;
         }
 
-        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, int lowValue, int highValue, Func<int> getter, Action<int> setter, string format = "{0}")
+        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, int lowValue, int highValue, Func<int> getter, Action<int> setter, string format = "{0}", int stepSize = 1)
         {
             builder.Factories.Add(new DebugSliderIntFactory()
             {
@@ -381,11 +383,12 @@ namespace DebugUI
                 HighValue = highValue,
                 Getter = getter,
                 Setter = setter,
+                StepSize = stepSize
             });
             return builder;
         }
 
-        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, int lowValue, int highValue, Func<int> getter, string format = "{0}")
+        public static IDebugUIBuilder AddSlider(this IDebugUIBuilder builder, string label, int lowValue, int highValue, Func<int> getter, string format = "{0}", int stepSize = 1)
         {
             builder.Factories.Add(new DebugSliderIntFactory()
             {
@@ -394,6 +397,7 @@ namespace DebugUI
                 LowValue = lowValue,
                 HighValue = highValue,
                 Getter = getter,
+                StepSize = stepSize
             });
             return builder;
         }

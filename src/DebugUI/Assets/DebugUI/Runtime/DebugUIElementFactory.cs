@@ -51,6 +51,7 @@ namespace DebugUI
         public string Format { get; set; }
         public float LowValue { get; set; }
         public float HighValue { get; set; }
+        public float StepSize { get; set; }
         public Func<float> Getter { get; set; }
         public Action<float> Setter { get; set; }
 
@@ -62,6 +63,7 @@ namespace DebugUI
                 Format = Format,
                 lowValue = LowValue,
                 highValue = HighValue,
+                stepSize = StepSize
             };
 
             field.ForceUpdateValue(Getter());
@@ -92,6 +94,7 @@ namespace DebugUI
         public string Format { get; set; }
         public int LowValue { get; set; }
         public int HighValue { get; set; }
+        public int StepSize { get; set; }
         public Func<int> Getter { get; set; }
         public Action<int> Setter { get; set; }
 
@@ -103,6 +106,7 @@ namespace DebugUI
                 Format = Format,
                 lowValue = LowValue,
                 highValue = HighValue,
+                stepSize = StepSize
             };
 
             field.ForceUpdateValue(Getter());
