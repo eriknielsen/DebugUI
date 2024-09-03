@@ -101,7 +101,7 @@ namespace DebugUI.UIElements
                 }
             });
 
-            background.Add(foldout);
+            //background.Add(foldout);
 
             scrollView = new(ScrollViewMode.VerticalAndHorizontal);
 
@@ -122,8 +122,9 @@ namespace DebugUI.UIElements
 
             scrollView.contentViewport.style.flexGrow = 0f;
 
-            foldout.Add(scrollView);
-
+            //foldout.Add(scrollView);
+            background.Add(scrollView);
+            /*
             var toggle = foldout.Q<Toggle>();
             schedule.Execute(() =>
             {
@@ -133,6 +134,7 @@ namespace DebugUI.UIElements
                 );
             })
             .Every(1);
+            */
         }
     }
 }

@@ -7,6 +7,9 @@ namespace DebugUI
     {
         [SerializeField] UIDocument uiDocument;
 
+        VisualElement selection;
+        NavigationHelper navigationHelper;
+
         protected abstract void Configure(IDebugUIBuilder builder);
 
         protected virtual void Awake()
@@ -24,12 +27,14 @@ namespace DebugUI
             uiDocument.rootVisualElement.RegisterCallback<NavigationCancelEvent>(OnNavCancelEvent);
             uiDocument.rootVisualElement.RegisterCallback<NavigationMoveEvent>(OnNavMoveEvent);
             uiDocument.rootVisualElement.RegisterCallback<NavigationSubmitEvent>(OnNavSubmitEvent);
+
+            selection = uiDocument.rootVisualElement.Q<Toggle>();
+            selection.Focus();
+
+            navigationHelper = new NavigationHelper(uiDocument.rootVisualElement.Query(name: "unity-content-container").Build().First());
         }
         void OnKeyDown(KeyDownEvent ev)
         {
-            Debug.Log("KeyDown:" + ev.keyCode);
-            Debug.Log("KeyDown:" + ev.character);
-            Debug.Log("KeyDown:" + ev.modifiers);
         }
         private void OnNavSubmitEvent(NavigationSubmitEvent evt)
         {
@@ -38,7 +43,9 @@ namespace DebugUI
 
         private void OnNavMoveEvent(NavigationMoveEvent evt)
         {
-            Debug.Log($"OnNavMoveEvent {evt.propagationPhase} - move {evt.move} - direction {evt.direction}");
+            Debug.Log($"OnNavMoveEvent {evt.propagationPhase} - move {evt.move} - direction {evt.direction} - target {evt.target}");
+
+            selection = navigationHelper.Navigate(selection, evt);
         }
 
         private void OnNavCancelEvent(NavigationCancelEvent evt)
@@ -48,6 +55,8 @@ namespace DebugUI
         public void SetVisible(bool isVisible)
         {
             uiDocument.rootVisualElement.visible = isVisible;
+            selection = uiDocument.rootVisualElement.Q<Toggle>();
+            selection.Focus();
         }
 
         public bool GetVisible() => uiDocument.rootVisualElement.visible;

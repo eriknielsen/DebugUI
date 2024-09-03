@@ -43,8 +43,6 @@ namespace DebugUI
                 text = Text
             };
 
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
-
             return field;
         }
     }
@@ -88,7 +86,6 @@ namespace DebugUI
                 })
                 .AddTo(disposables);
 
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
             return field;
         }
     }
@@ -131,8 +128,6 @@ namespace DebugUI
                     field.value = x;
                 })
                 .AddTo(disposables);
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
             return field;
         }
     }
@@ -167,8 +162,6 @@ namespace DebugUI
                     field.title = Label + " " + string.Format(Format, x);
                 })
                 .AddTo(disposables);
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
             return field;
         }
     }
@@ -219,8 +212,6 @@ namespace DebugUI
 
             foldout.value = false;
 
-            foldout.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(foldout, evt), TrickleDown.NoTrickleDown);
-
             return foldout;
         }
     }
@@ -254,8 +245,6 @@ namespace DebugUI
                     field.value = x;
                 })
                 .AddTo(disposables);
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
 
             return field;
         }
@@ -291,8 +280,6 @@ namespace DebugUI
                     field.value = x;
                 })
                 .AddTo(disposables);
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
 
             return field;
         }
@@ -330,8 +317,6 @@ namespace DebugUI
                 })
                 .AddTo(disposables);
 
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
-
             return field;
         }
     }
@@ -347,8 +332,6 @@ namespace DebugUI
                 Text = Label,
                 BackgroundImage = Background
             };
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
 
             return field;
         }
@@ -374,8 +357,6 @@ namespace DebugUI
                 })
                 .AddTo(disposables);
 
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
-
             return field;
         }
     }
@@ -399,8 +380,6 @@ namespace DebugUI
                     field.BackgroundImage = Background.FromSprite(Getter());
                 })
                 .AddTo(disposables);
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
 
             return field;
         }
@@ -426,8 +405,6 @@ namespace DebugUI
                 })
                 .AddTo(disposables);
 
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
-
             return field;
         }
     }
@@ -451,8 +428,6 @@ namespace DebugUI
                     field.BackgroundImage = Background.FromVectorImage(Getter());
                 })
                 .AddTo(disposables);
-
-            field.RegisterCallback<NavigationCancelEvent>(evt => NavigationHelper.GoToParentFoldout(field, evt), TrickleDown.NoTrickleDown);
 
             return field;
         }
