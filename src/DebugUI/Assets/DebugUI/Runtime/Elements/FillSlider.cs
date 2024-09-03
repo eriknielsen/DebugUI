@@ -65,34 +65,6 @@ namespace DebugUI.UIElements
         }
     }
 
-    public static class NavigationHelper
-    {
-        public static void GoToParentFoldout(this VisualElement target, NavigationCancelEvent evt)
-        {
-            void Recurse(VisualElement ve)
-            {
-                if (ve is Foldout foldout || ve.parent == null)
-                {
-                    var toggle = ve.Q<Toggle>();
-                    Debug.Log("yay woo, reached the foldout to close");
-                    toggle.value = false;
-                    toggle.Focus();
-                }
-                else
-                {
-                    Debug.Log("go to next parent, hopefully tht is the foldout we are looking for");
-                    Recurse(ve.parent);
-                }
-            }
-            Debug.Log($"Target: {evt.target}");
-            Debug.Log($"Parent: {target.parent}");
-            Debug.Log(target.name);
-            Debug.Log(target.parent.name);
-            Recurse(target.parent);
-            evt.StopPropagation();
-        }
-    }
-
     public class FillSliderInt : SliderInt
     {
         public sealed new class UxmlFactory : UxmlFactory<FillSliderInt, UxmlTraits> { }
