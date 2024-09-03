@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -64,6 +65,34 @@ namespace DebugUI.UIElements
         }
     }
 
+    public static class NavigationHelper
+    {
+        public static void GoToParentFoldout(this VisualElement target, NavigationCancelEvent evt)
+        {
+            void Recurse(VisualElement ve)
+            {
+                if (ve is Foldout foldout || ve.parent == null)
+                {
+                    var toggle = ve.Q<Toggle>();
+                    Debug.Log("yay woo, reached the foldout to close");
+                    toggle.value = false;
+                    toggle.Focus();
+                }
+                else
+                {
+                    Debug.Log("go to next parent, hopefully tht is the foldout we are looking for");
+                    Recurse(ve.parent);
+                }
+            }
+            Debug.Log($"Target: {evt.target}");
+            Debug.Log($"Parent: {target.parent}");
+            Debug.Log(target.name);
+            Debug.Log(target.parent.name);
+            Recurse(target.parent);
+            evt.StopPropagation();
+        }
+    }
+
     public class FillSliderInt : SliderInt
     {
         public sealed new class UxmlFactory : UxmlFactory<FillSliderInt, UxmlTraits> { }
@@ -109,12 +138,12 @@ namespace DebugUI.UIElements
 
             if (previousValue > x)
             {
-	            // If user is lowering the value, round down
+                // If user is lowering the value, round down
                 steppedValue = (Mathf.Floor(steppedValue));
             }
             else
             {
-	            // If user is increasing the value, round up
+                // If user is increasing the value, round up
                 steppedValue = (Mathf.Ceil(steppedValue));
             }
 
@@ -124,6 +153,6 @@ namespace DebugUI.UIElements
             valueLabel.text = string.Format(Format, x);
 
             previousValue = value;
-		}
+        }
     }
 }
